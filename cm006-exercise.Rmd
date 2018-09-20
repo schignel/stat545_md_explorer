@@ -32,8 +32,7 @@ Let's look at a _scatterplot_ of `gdpPercap` vs. `lifeExp`.
 2. Populate the data and aesthetic mapping in `ggplot`. What is returned? What's missing?
 
 ```{r}
-ggplot(gapminder, aes(x=lifeExp, y=gdpPercap)) + 
-  geom_point()
+ggplot(gapminder, aes(x=lifeExp, y=gdpPercap))
 ```
 
 
@@ -41,7 +40,10 @@ ggplot(gapminder, aes(x=lifeExp, y=gdpPercap)) +
 
 3. Add the missing component as a _layer_.
 
-
+```{r}
+ggplot(gapminder, aes(x=lifeExp, y=gdpPercap)) + 
+  geom_point()
+```
 
 Notice the "metaprogramming" again!
 
