@@ -1,6 +1,6 @@
 ---
 title: "cm006 Exercises: Exploring Geometric Objects"
-output:github_document 
+output: github_document 
 ---
 
 In this worksheet, we'll be exploring various plot types (i.e., geometric objects), only using the `x` and `y` aesthetics (and `group`).
@@ -49,10 +49,6 @@ Notice the "metaprogramming" again!
 
 4. You _must_ remember to put the aesthetic mappings in the `aes` function! What happens if you forget?
 
-```{r}
-ggplot(gapminder, x=lifeExp, y=gdpPercap) +
-  geom_point()
-```
 
 
 5. Put the y-axis on a log scale, first by transforming the y variable. 
@@ -246,7 +242,11 @@ c + geom_line()
 
 4. Use the `group` aesthetic to fix the problem.
 
-
+```{r}
+c <-ggplot(gapminder, aes(year, lifeExp))
+c + geom_line()
+c + geom_line(aes(group=country),  alpha=0.2)
+```
 
 5. Optional: git stage and commit
 
