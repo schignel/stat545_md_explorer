@@ -17,7 +17,9 @@ library(ggplot2)
 
 ```{r}
 gvsl <- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
-          scale_x_log10()
+  scale_x_log10()
+gvsl + geom_point(aes(shape=continent), alpha=0.2)
+
 ```
 
 
