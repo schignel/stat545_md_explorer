@@ -6,6 +6,7 @@ output: github_document
 ```{r}
 library(gapminder)
 library(ggplot2)
+library(tidyverse)
 ```
 
 ```{r}
@@ -133,6 +134,16 @@ Let's see how Rwanda's life expectancy and GDP per capita have evolved over time
 - Try `geom_line()`. Try `geom_point()`.
 - Add `arrow=arrow()` option.
 - Add `geom_text`, with year label. 
+
+```{r}
+gapminder %>% 
+  filter(country =="Rwanda") %>% 
+  arrange(year) %>% 
+  ggplot(aes(gdpPercap, lifeExp)) +
+  scale_x_log10() +
+  geom_point()+
+  geom_path(arrow=arrow())
+```
 
 
 ## Two categorical variables
