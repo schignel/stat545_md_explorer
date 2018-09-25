@@ -142,7 +142,7 @@ gapminder %>%
   ggplot(aes(gdpPercap, lifeExp)) +
   scale_x_log10() +
   geom_point()+
-  geom_path(arrow=arrow())
+  geom_path(arrow=arrow()) #connects the dots in the order they appear in the data frame so we can see how lifeExp vs GDP has changed through time (arrang(year))
 ```
 
 
@@ -154,6 +154,12 @@ Try `cyl` (number of cylinders) ~ `am` (transmission) in the `mtcars` data frame
 - `geom_count()`.
 - `geom_bin2d()`. Compare with `geom_tile()` with `fill` aes.
 
+```{r}
+ggplot(mtcars, aes(factor(cyl), factor(am))) + #force cyl and am to be factor categories using factor()
+  geom_bin2d()
+```
+
+
 ## Overplotting
 
 Try a scatterplot with:
@@ -163,6 +169,12 @@ Try a scatterplot with:
 - `geom_density2d()`
 - `geom_smooth()`
 
+```{r}
+gvsl + geom_hex()
+gvsl + geom_density2d()
+gvsl + geom_point(alpha=0.1) + geom_smooth(method = "lm")
+```
+
 
 ## Bar plots
 
@@ -170,6 +182,12 @@ How many countries are in each continent? Use the year 2007.
 
 1. After filtering the gapminder data to 2007, make a bar chart of the number of countries in each continent. Store everything except the geom in the variable `d`.
 
+```{r}
+gapminder %>% 
+  filter(year==2007) %>% 
+  ggplot(aes(x = continent)) +
+  geom_bar()
+```
 
 
 2. Notice the y-axis. Oddly, `ggplot2` doesn't make it obvious how to change to proportion. Try adding a `y` aesthetic: `y=..count../sum(..count..)`.
@@ -184,6 +202,10 @@ __Uses of bar plots__: Get a sense of relative quantities of categories, or see 
 
 - Add `coord_polar()` to a scatterplot.
 
+```{r}
+gvsl+ geom_point() + 
+  coord_polar()
+```
 
 # Want more practice?
 
