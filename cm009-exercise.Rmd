@@ -105,13 +105,15 @@ lotr_tidy <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/maste
 Get word counts across "Race". Then try "Gender". 
 
 ```{r}
-
+spread(lotr_tidy, key = "Race", value = "Words")
 ```
 
 Now try combining race and gender. Use `unite()` from `tidyr` instead of `paste()`. 
 
 ```{r}
-
+lotr_tidy %>%
+  unite(Race_Gender, Race, Gender) %>% 
+  spread(key="Race_Gender", value="Words")
 ```
 
 ## Other `tidyr` goodies
@@ -121,7 +123,7 @@ Check out the Examples in the documentation to explore the following.
 `expand` vs `complete` (trim vs keep everything). Together with `nesting`. Check out the Examples in the `expand` documentation.
 
 ```{r}
-
+expand(mtcars, vs, cyl)
 ```
 
 `separate_rows`: useful when you have a variable number of entries in a "cell".
