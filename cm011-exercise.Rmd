@@ -33,7 +33,8 @@ print(class(sum))
 Usually, there's no need to fuss about these differences: just use the `is.*()` family of functions. Give it a try:
 
 ```{r}
-
+is.numeric(a)
+is.data.frame(iris)
 ```
 
 We can also coerce objects to take on a different form, typically using the `as.*()` family of functions. We can't always coerce! You'll get a sense of this over time, but try:
@@ -43,6 +44,10 @@ We can also coerce objects to take on a different form, typically using the `as.
 - Coercing a number to a data.frame. `letters` to a data.frame.
 
 ```{r}
+as.character(100)
+as.numeric("100")*2 #can multiple by 2 to confirm it is a number
+#as.numeric("hello") #doesn't work because it's a word
+as.data.frame(letters) #takes the vector "letters" and converts to a data.frame
 
 ```
 
@@ -63,38 +68,47 @@ mtcars$hp
 Use the `c()` function to make a vector consisting of the course code (`"STAT"` and `545`). Notice the coercion. Vectors must be homogeneous.
 
 ```{r}
-
+(course <- c("STAT", 545)) # vectors can only have one type of data, so that's why this operation converts 545 number to a string
 ```
 
 
-Subset the first entry. Remove the first entry. Note the base-1 system.
+Subset the first entry using []. Remove the first entry. Note the base-1 system.
 
 ```{r}
-
+course[1] #subsets the first entry
+course[-1] #removes the first entry
 ```
 
 Use `<-` to change the second entry to "545A". Using the same approach, add a third entry, "S01".
 
 ```{r}
-
+course[2] <- "545A"
+course[3] <- "S01"
+course
 ```
 
 Subset the first and third entry. Order matters! Subset the third and first entry.
 
 ```{r}
-
+course[c(3, 1)] #subset the third entry and the first entry
 ```
 
 Explore integer sequences, especially negatives and directions. Especially `1:0` that might show up in loops!
 
 ```{r}
-
+3:10
+10:-5
+1:0
+#Vector of length 0:
+seq_len(0)
+seq_len(10)
 ```
 
 Singletons are also vectors. Check using `is.vector`.
 
 ```{r}
-
+is.vector(6) # 6 is a single number but is still considered a vector by R.
+a[1][1]
 ```
 
 
@@ -103,46 +117,54 @@ Singletons are also vectors. Check using `is.vector`.
 A key aspect of R is its vectorization. Let's work with the vector following vector:
 
 ```{r}
-(a <- 7:-2)
+(a <- 7:-2) #putting brackets around this assigns the vector AND prints it out
 (n <- length(a))
 ```
 
 Square each component:
 
 ```{r}
-
+a ^ 2
 ```
 
 Multiply each component by 1 through its length:
 
 ```{r}
-
+a * 1:10 # R going through each of the components on each side of the operater in sequence.
 ```
 
 It's important to know that R will silently recycle! Unless the length of one vector is not divisible by the other. Let's see:
 
 ```{r}
-
+a * 1:3 #when the number of vectors on either side of the component don't match, R will recycle the sequence and go through the rest of the longer vector. It will only give you a warning if the last vector is chopped off, but it won't if it does line up.
 ```
 
 
 This is true of comparison operators, too. Make a vector of logicals using a comparison operator.
 
 ```{r}
-
+a > 0
 ```
 
 
-Now try a boolean operator. Note that && and || are NOT vectorized!
+Now try a boolean operator. 
 
 ```{r}
+a < 5
+a > 0 & a < 5 # Will return TRUE where both are TRUE (for each entry in the vector)
+a > 0 && a < 5 # Note that && and || are NOT vectorized! These are often used in IF statements
 
+# Use functions "all" or "any" to reduce a vector of non-1 length
+all(a > 0 & a < 5)
+any(a > 0 & a < 5)
 ```
 
 
 Recycling works with assignment, too. Replace the entire vector a with 1:2 repeated:
 
 ```{r}
+a[1:n] <- 1:2 #subset the first entry all the way to the last entry
+a
 
 ```
 
@@ -163,27 +185,32 @@ Let's give the components some names ("subject", "code", and "section") using th
 - Notice that the vector does not change!!
 
 ```{r}
-
+setNames(course, c("subject", "code", "section"))
+# all this does it sit on top of the vector, to make it easier to work with, but won't interfere with your operations. 
+course # note that the the vector object is still the same, even after SetNames
 ```
 
 
 2. Using the names function with `<-`. Also, just explore the names function.
 
 ```{r}
-
+names(course) <- c("STAT", "545A", "S01")
+course # notice the vector now has the names
+names(course) # extracts just the names
 ```
 
 3. Re-constructing the vector, specifying names within `c()`.
 
 ```{r}
-
+course <- c(subject="STAT", code="545A", section="S01")
+course
 ```
 
 
 Subset the entry labelled "section" and "subject". 
 
 ```{r}
-
+course[c("section", "subject")]
 ```
 
 Amazingly, we can also subset by a vector of logicals (which will be recycled!). Let's work with our integer sequence vector again:
@@ -191,6 +218,7 @@ Amazingly, we can also subset by a vector of logicals (which will be recycled!).
 ```{r}
 (a <- 7:-2)
 (n <- length(a))
+a[a > 0] # omits all entries < 0
 ```
 
 ## Lists
@@ -200,11 +228,11 @@ Unlike vectors, which are atomic/homogeneous, a list in R is heterogeneous.
 Try storing the course code (`"STAT"` and `545`) again, but this time in a list. Use the `list()` function.
 
 ```{r}
-
+(course <- list("STAT",545))
 ```
 
 
-Lists can hold pretty much anything, and can also be named. Let's use the following list:
+Lists can hold pretty much anything, and can also be named. Let's use the following list: #lists are like a train of train cars, each holding different things
 
 ```{r}
 (my_list <- list(year=2018, instructor=c("Vincenzo", "Coia"), fav_fun=typeof))
@@ -214,12 +242,16 @@ Lists can hold pretty much anything, and can also be named. Let's use the follow
 Subsetting a list works similarly to vectors. Try subsetting the first element of `my_list`; try subsettig the first _component_ of the list. Notice the difference!
 
 ```{r}
-
+my_list[2]  # train car and contents
+my_list[[2]] # returns the actual value within the train car
 ```
 
 Try also subsetting by name:
 
 ```{r}
+my_list["year"] # train car and contents
+my_list[["year"]] #double brackets are like using the $ (see below)
+my_list$year
 
 ```
 
@@ -234,7 +266,7 @@ is.list(small_df)
 ```
 
 ```{r}
-as.list(small_df)
+as.list(small_df) # telling R: forget about showing it as a data.frame, just show it to me as a list
 ```
 
 Note that there's a difference between a list of one object, and that object itself! This is different from vectors.
