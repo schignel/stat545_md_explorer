@@ -93,7 +93,8 @@ Exercise:
 ```{r}
 (my_lm <- lm(lifeExp ~ log(gdpPercap), data=gapminder))
 unclass(my_lm)
-names(my_lm)
+names(my_lm) #check out what components (model outputs) are available
+my_lm$coefficients #look at the coefficients
 ```
 
 To complicate things further, some info is stored in _another_ list after applying the `summary` function:
@@ -106,7 +107,11 @@ summary(my_lm) %>%
 We can use the `predict()` function to make predictions from the model (default is to use fitting/training data). Here are the predictions:
 
 ```{r}
-predict(my_lm) %>% 
+predict(my_lm) %>% #takes a dataframe, and for each row it takes the x value and predicts a corresponding y value. Needs tidy data. 
+  head()
+
+# In order to predict to new data, you use the `newdata` argument
+predict(my_lm, newdata = tibble(gdpPercap = c(500, 600, 700))) %>% #takes a dataframe, and for each row it takes the x value and predicts a corresponding y value. Needs tidy data. 
   head()
 ```
 
@@ -134,5 +139,8 @@ Let's make it easier to extract info, using the `broom` package. There are three
 Exercise: apply all three functions to our fitted model, `my_lm`. What do you see?
 
 ```{r}
-
+tidy(my_lm) # note the low p.value shows there is a significant linear relationship
+augment(my_lm) #adds the model outputs as columns
+augment(my_lm, newdata = tibble(gdpPercap = c(500, 600, 700))) #can add newdata
+glance(my_lm) #how well the model is fit
 ```
