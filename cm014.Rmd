@@ -61,6 +61,7 @@ Model fitting methods tend to use a common format in R:
 ```
 method(formula, data, options)
 ```
+They tend to require data in tidy format
 
 They also tend to have a common output: a special _list_. 
 
@@ -78,6 +79,8 @@ __Formula__:
 
 In R, takes the form `y ~ x1 + x2 + ... + xp` (use column names in your data frame).
 
+i.e., predict the lefthand side base on the variables on the righthand side.
+
 __Data__: The data frame.
 
 __Options__: Specific to the method.
@@ -88,7 +91,9 @@ Exercise:
 2. On a new line, use the `unclass` function to uncover the object's true nature: a list. Note: it might be easier to use the `names` function to see what components are included in the list. 
 
 ```{r}
-(my_lm <- lm(FILL_THIS_IN, data=gapminder))
+(my_lm <- lm(lifeExp ~ log(gdpPercap), data=gapminder))
+unclass(my_lm)
+names(my_lm)
 ```
 
 To complicate things further, some info is stored in _another_ list after applying the `summary` function:
