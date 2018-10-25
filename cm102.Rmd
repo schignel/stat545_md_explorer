@@ -143,6 +143,14 @@ test_that("folder names are length 6.", {
     - This code might work (depending on your directory): `for (folder in folders) dir.create(here::here(folder))`
     - We'll learn how to use `purrr` instead of loops next week.
 
+
+Create folders for each class in the participation repo:
+```{r}
+#install.packages("here")
+#for (folder in folders) dir.create(here::here(folder))
+```
+
+
 ### Make README's
 
 Now, let's seed the folders with README's.
@@ -165,6 +173,12 @@ cat(contents[1]) # see what the first entry in the vector looks like
     - `for (i in 1:length(files)) write(contents[i], files[i])`
     - There's a better alternative to a loop using `purrr`. Next week's topic!
     - This code might not work, depending on your workind directory and system.
+
+Create READMEs in each participation folder:    
+```{r}
+for (i in 1:length(files)) write(contents[i], files[i])
+```
+
 
 ## Regular Expressions (aka regex)
 
