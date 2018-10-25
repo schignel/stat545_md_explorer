@@ -120,21 +120,21 @@ Let's make those folders!
 1. Make a character vector with entries `"01"`, `"02"`, ..., `12` with `str_pad()`.
 
 ```{r}
-(num <- str_pad(FILL_THIS_IN))
+(num <- str_pad(1:12, width = 2, side = "left", pad = "0"))
 ```
 
-2. Use `str_c()` to combine `"cm1"` with the numbers:
+2. Use `str_c()` to combine `"/cm1"` with the numbers:
     - If your system uses "\" instead of "/", you might need two backslashes.
 
 ```{r}
-(folders <- str_c(FILL_THIS_IN))
+(folders <- str_c("/cm1", num))
 ```
 
-3. Use `testthat` to check that each entry of `folders` has 5 characters. You might find the base R `all()` function useful.
+3. Use `testthat` to check that each entry of `folders` has 6 characters. You might find the base R `all()` function useful.
 
 ```{r}
-test_that("folder names are length 5.", {
-    expect_FILL_THIS_IN()
+test_that("folder names are length 6.", {
+    expect_true(all(str_length(folders) == 6))
 })
 ```
 
