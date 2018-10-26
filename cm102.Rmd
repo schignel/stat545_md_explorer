@@ -121,14 +121,14 @@ Let's make those folders!
 1. Make a character vector with entries `"01"`, `"02"`, ..., `12` with `str_pad()`.
 
 ```{r}
-(num <- str_pad(1:12, width = 2, side = "left", pad = "0"))
+(num <- str_pad(3:14, width = 2, side = "left", pad = "0"))
 ```
 
 2. Use `str_c()` to combine `"/cm1"` with the numbers:
     - If your system uses "\" instead of "/", you might need two backslashes.
 
 ```{r}
-(folders <- str_c("/cm1", num))
+(folders <- str_c("/cm0", num))
 ```
 
 3. Use `testthat` to check that each entry of `folders` has 6 characters. You might find the base R `all()` function useful.
@@ -148,7 +148,7 @@ test_that("folder names are length 6.", {
 Create folders for each class in the participation repo:
 ```{r}
 #install.packages("here")
-#for (folder in folders) dir.create(here::here(folder))
+for (folder in folders) dir.create(here::here(folder))
 ```
 
 
@@ -166,7 +166,7 @@ Now, let's seed the folders with README's.
     - Hint: Use `\n` to indicate a new line! This works in graphs, too.
     
 ```{r}
-contents <- str_c("# Participation\n\n Participation for class meeting", 1:12)
+contents <- str_c("# Participation\n\n Participation for class meeting", 3:14)
 cat(contents[1]) # see what the first entry in the vector looks like
 ```
 
