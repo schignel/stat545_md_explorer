@@ -2,7 +2,7 @@
 title: "STAT 547 Class Meeting 02 Worksheet"
 output: html_notebook
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 ```{r}
@@ -32,6 +32,7 @@ There's that famous sentence about the quick brown fox that contains all letters
 
 ```{r}
 (fox <- str_subset(sentences, pattern = "fox"))
+
 ```
 
 Not quite the sentence I was thinking of. How many words does it contain? Use `str_split(string, pattern)`, noting its output (list).
@@ -176,6 +177,7 @@ cat(contents[1]) # see what the first entry in the vector looks like
 
 Create READMEs in each participation folder:    
 ```{r}
+(files <- str_c(here::here(folders), "/READ.md"))
 for (i in 1:length(files)) write(contents[i], files[i])
 ```
 
