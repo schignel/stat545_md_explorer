@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1186986519",
+    "hash" : "0",
     "id" : "180C01F",
-    "lastKnownWriteTime" : 1540600092,
-    "last_content_update" : 1540600092180,
+    "lastKnownWriteTime" : 1540600500,
+    "last_content_update" : 1540600500582,
     "path" : "C:/Users/schignel/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_participation/README.md",
     "project_path" : "README.md",
     "properties" : {
-        "cursorPosition" : "17,0",
+        "cursorPosition" : "14,15",
         "scrollLine" : "0"
     },
     "relative_order" : 2,
