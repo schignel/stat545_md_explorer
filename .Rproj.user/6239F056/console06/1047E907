@@ -1,0 +1,34 @@
+[0m[0K]0;:/c/Users/schignel/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_participation[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$ arrange(gapminder, lifeExp)[0K
+[0K[?25hbash: syntax error near unexpected token `gapminder,'[0K[?25l
+[0K[?25h[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ h[0K[?25he[0Ka[0Kd[0K([0Kg[0Ka[0Km[0Kp[0K[?25l$ head(gam[0K[?25h[?25l$ head(ga[0K[?25hp[0Km[0Ki[0Kn[0Kd[0Ke[0Kr[0K)[0K[?25l
+bash: syntax error near unexpected token `gapminder'[0K
+[0K[?25h[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$[0K[3G[?25h[6n[6n[6n[6n[6n[?25l
+[0K[?25h[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l
+[0K[?25h[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$ arrange(gapminder, lifeExp)[0K
+bash: syntax error near unexpected token `gapminder,'[0K
+[0K[?25h[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$[0K
+[0K[?25h[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+]0;:/c/Users/schignel/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_participation[?25l
+[0;32mSteve@NREL-sternlieb [0;35m [0;33m~/Sync/UBC/PhD/Classes/2018W-Term1/STAT 545A - Data Wrangling in R/stat545_parti[0Kc
+ipation[0;36m (master)[0m[0K
+$[0K[3G[?25h
