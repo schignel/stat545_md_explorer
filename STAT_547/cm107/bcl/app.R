@@ -34,10 +34,10 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       sliderInput("priceInput", "Select your desired price range.",
-                  min = 0, max = 100, value = c(15, 30), pre="$"),
+                  min = 0, max = 100, value = c(15, 30), pre="$"), #settings
       radioButtons("typeInput", "Select your alcoholic beverage type.",
                    choices = c("BEER", "REFRESHMENT", "SPIRITS", "WINE"),
-                               selected = "WINE")
+                               selected = "WINE") # set the default
     ),
     mainPanel(
       plotOutput("price_hist"), # this makes the list "Output" and populates with "price_hist"
@@ -48,14 +48,14 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   observe(print(input$priceInput))
-  bcl_filtered <- reactive({
+  bcl_filtered <- reactive({ #defining a variable to put filtered data in. Reactive means it updates
     bcl %>%
-      filter(Price < input$priceInput[2],
-             Price > input$priceInput[1],
-             Type == input$typeInput)
+      filter(Price < input$priceInput[2], # [2] = upper bound from value argument
+             Price > input$priceInput[1], # [1] = lower bound
+             Type == input$typeInput)     # Whatever type is selected in the radio 
   })
   output$price_hist <- renderPlot({
-    bcl_filtered() %>% 
+    bcl_filtered() %>% # need to include () since it's reactive
       ggplot(aes(Price)) +
       geom_histogram()
   })
