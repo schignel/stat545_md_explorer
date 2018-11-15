@@ -8,7 +8,7 @@
 #
 
 library(shiny)
-
+library(tidyverse)
 # Any code before "Define UI" runs, so you can set things up for it. 
 a <- 5
 bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
@@ -27,11 +27,18 @@ bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
 # )
 
 # This will output html, so we can't put R code in it
+# each of these functions output html
 ui <- fluidPage(
   titlePanel("BC Liquor price app", 
              windowTitle = "BCL app"),
   sidebarLayout(
-    sidebarPanel("This text is in the sidebar."),
+    sidebarPanel(
+      sliderInput("priceInput", "Select your desired price range.",
+                  min = 0, max = 100, value = c(15, 30), pre="$"),
+      radioButtons("typeInput", "Select your alcoholic beverage type.",
+                   choices = c("BEER", "REFRESHMENT", "SPIRITS", "WINE"),
+                               selected = "WINE")
+    ),
     mainPanel(
       plotOutput("price_hist"), # this makes the list "Output" and populates with "price_hist"
       tableOutput("bcl_data")) # this adds another traincar to the list
@@ -40,10 +47,25 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  output$price_hist <- renderPlot(ggplot2::qplot(bcl$Price)) # subset price_hist and assign a plot to it
-  output$bcl_data <- renderTable(bcl)
+  observe(print(input$priceInput))
+  bcl_filtered <- reactive({
+    bcl %>%
+      filter(Price < input$priceInput[2],
+             Price > input$priceInput[1],
+             Type == input$typeInput)
+  })
+  output$price_hist <- renderPlot({
+    bcl_filtered() %>% 
+      ggplot(aes(Price)) +
+      geom_histogram()
+  })
+  output$bcl_data <- renderTable({
+    bcl %>% 
+      filter(Price < input$priceInput[2],
+             Price > input$priceInput[1],
+             Type == input$typeInput)
+  })
 }
-
 # Run the application 
 shinyApp(ui = ui, server = server)
 
